@@ -24,11 +24,11 @@ import {
 import { useState } from 'react'
 
 const products = [
-    { name: 'Home', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
-    { name: 'About', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
-    { name: 'Our treks', description: 'Your customers’ data will be safe and secure', href: '#', icon: FingerPrintIcon },
-    { name: 'Anything in your mind', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },
-    { name: 'Contact Us', description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon },
+    { name: 'Trek for Student', description: 'Learning with Nature', href: '#', icon: ChartPieIcon },
+    { name: 'Trek for Family', description: 'Have a best bonding with family far away from concrete walls', href: '#', icon: CursorArrowRaysIcon },
+    { name: 'Just Offbeat', description: 'For adventure and enthusiast explorers', href: '#', icon: FingerPrintIcon },
+    { name: 'Trek by Difficulty', description: 'Test you endurance and power', href: '#', icon: SquaresPlusIcon },
+    { name: 'Anything in your mind', description: 'Let Plan something together', href: '#', icon: ArrowPathIcon },
 ]
 const callsToAction = [
     { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
@@ -64,7 +64,7 @@ export default function Example() {
                 <PopoverGroup className="hidden lg:flex lg:gap-x-12">
                     <Popover className="relative">
                         <PopoverButton className="flex items-center gap-x-1 text-sm/6 font-semibold text-white">
-                            Product
+                            All Treks
                             <ChevronDownIcon aria-hidden="true" className="size-5 flex-none text-gray-500" />
                         </PopoverButton>
 
@@ -107,13 +107,13 @@ export default function Example() {
                     </Popover>
 
                     <a href="#" className="text-sm/6 font-semibold text-white">
-                        Features
+                        Home
                     </a>
                     <a href="#" className="text-sm/6 font-semibold text-white">
-                        Marketplace
+                        About
                     </a>
                     <a href="#" className="text-sm/6 font-semibold text-white">
-                        Company
+                        Contact Us
                     </a>
                 </PopoverGroup>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -148,7 +148,7 @@ export default function Example() {
                             <div className="space-y-2 py-6">
                                 <Disclosure as="div" className="-mx-3">
                                     <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pr-3.5 pl-3 text-base/7 font-semibold text-white hover:bg-white/5">
-                                        Product
+                                        All Treks
                                         <ChevronDownIcon aria-hidden="true" className="size-5 flex-none group-data-open:rotate-180" />
                                     </DisclosureButton>
                                     <DisclosurePanel className="mt-2 space-y-2">
@@ -168,19 +168,19 @@ export default function Example() {
                                     href="#"
                                     className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
                                 >
-                                    Features
+                                    Home
                                 </a>
                                 <a
                                     href="#"
                                     className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
                                 >
-                                    Marketplace
+                                    About
                                 </a>
                                 <a
                                     href="#"
                                     className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
                                 >
-                                    Company
+                                    Contact Us
                                 </a>
                             </div>
                             <div className="py-6">
