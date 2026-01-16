@@ -15,7 +15,7 @@ export default function CardDemo() {
   return (
     <>
       {/* The Toaster component is required to display the notifications */}
-      <div className="grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 gap-4"> 
+      <div className="grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-3"> 
         <div>
       <Toaster richColors />
       <div className="flex w-full items-center justify-center bg-background">

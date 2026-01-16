@@ -6,7 +6,7 @@ export default function Home() {
     <div>
       
       <Carousel />
-     <p className='text-2xl'><em>Here are our few treks</em></p> 
+     <p className='text-2xl my-3'><em className='border-b-2 border-b-black rounded-r-2xl'>Here are our few treks...</em></p> 
       <CardDemo />
       
     </div>
