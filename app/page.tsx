@@ -1,3 +1,4 @@
+import Blog from '@/components/custom/Blog';
 import CardDemo from '@/components/custom/CardDemo';
 import Carousel from '@/components/custom/Carousel';
 import { NewBanner } from '@/components/custom/NewBanner';
@@ -7,8 +8,10 @@ export default function Home() {
       
       <Carousel />
       <NewBanner/>
-     <p className='text-2xl my-3'><em className='border-b-2 border-b-black rounded-r-2xl'>Here are our few treks...</em></p> 
+     <p className='text-2xl my-3'><em className='border-b-2 border-b-black rounded-r-xl'>Here are our few treks...</em></p> 
       <CardDemo />
+      <p className='text-2xl my-3'><em className='border-b-2 border-b-black rounded-r-xl'>Look at our stories</em></p> 
+      <Blog/>
       
     </div>
   );
