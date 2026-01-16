@@ -92,7 +92,7 @@ export default function Carousel({
 
     return (
         <div
-            className={`w-full relative overflow-hidden bg-gray-100 ${className}`}
+            className={`w-full relative overflow-hidden rounded-2xl bg-gray-100 ${className}`}
             onMouseEnter={() => {
                 isHoveredRef.current = true;
                 stopAutoPlay();
