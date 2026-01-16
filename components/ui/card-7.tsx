@@ -1,9 +1,7 @@
-"use client";
-
-import * as React from "react";
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
+import * as React from "react";
 
 // Define the props for the TravelCard component
 interface TravelCardProps extends React.HTMLAttributes<HTMLDivElement> {
