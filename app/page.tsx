@@ -1,3 +1,4 @@
+import CardDemo from '@/components/custom/CardDemo';
 import Carousel from '@/components/custom/Carousel';
 
 export default function Home() {
@@ -5,6 +6,7 @@ export default function Home() {
     <div>
       
       <Carousel />
+      <CardDemo />
       
     </div>
   );

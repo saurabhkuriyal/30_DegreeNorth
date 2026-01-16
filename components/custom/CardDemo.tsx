@@ -1,3 +1,5 @@
+"use client";
+
 import { TravelCard } from "@/components/ui/card-7";
 import { Mountain } from "lucide-react";
 import { Toaster, toast } from "sonner";
