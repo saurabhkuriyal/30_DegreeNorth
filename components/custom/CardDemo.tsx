@@ -18,7 +18,7 @@ export default function CardDemo() {
       <div className="grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-3"> 
         <div>
       <Toaster richColors />
-      <div className="flex w-full items-center justify-center bg-background">
+      <div className="flex w-full items-center justify-center bg-background p-4">
         <TravelCard
           imageUrl="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070&auto=format&fit=crop"
           imageAlt="Misty mountains over a serene lake"

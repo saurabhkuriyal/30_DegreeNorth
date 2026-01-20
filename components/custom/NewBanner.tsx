@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react"
 
 function NewBanner() {
   return (
-    <Banner variant="muted" className="dark text-foreground my-2">
+    <Banner variant="muted" className="dark text-foreground my-2 animate-bounce mt-5 rounded-2xl">
       <div className="w-full">
         <p className="flex justify-center text-sm">
           <a href="#" className="group">
