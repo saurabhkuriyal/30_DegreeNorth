@@ -1,174 +1,192 @@
 "use client";
 
+import { cn } from "@/lib/utils";
+import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 type CarouselProps = {
-    images?: string[]; // URLs (can be /images/xxx.jpg in public or external links)
+    images?: string[];
     interval?: number; // ms
     className?: string;
 };
 
-//some default images from unsplash
 const DEFAULT_IMAGES = [
-    "https://images.unsplash.com/photo-1506765515384-028b60a970df?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.0.3&s=1b5d7f90d6f4d5d8f3a1a2c3e4b5f6a7",
-    "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.0.3&s=59c6f2c4e8d1c4b8a9b8b8b7b6b5b4a3",
-    "https://images.unsplash.com/photo-1493244040629-496f6d136cc3?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.0.3&s=6d6a6f1d2c0c4e6b2f5c8a9e0f1a2b3c",
+    "https://images.unsplash.com/photo-1506765515384-028b60a970df?q=80&w=1920&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1920&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1493244040629-496f6d136cc3?q=80&w=1920&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?q=80&w=1920&auto=format&fit=crop",
 ];
 
 export default function Carousel({
     images = DEFAULT_IMAGES,
-    interval = 4000,
+    interval = 3000,
     className = "",
 }: CarouselProps) {
-    const [index, setIndex] = useState(0);
-    const timerRef = useRef<number | null>(null);
-    const isHoveredRef = useRef(false);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [isPlaying, setIsPlaying] = useState(true);
+    const [isHovered, setIsHovered] = useState(false);
+
+    // Swipe handling
     const touchStartX = useRef<number | null>(null);
+    const touchEndX = useRef<number | null>(null);
+
+    // Timer for autoplay
+    const timerRef = useRef<NodeJS.Timeout | null>(null);
 
     const length = images.length;
 
+    // Next/Prev Logic
+    const nextSlide = useCallback(() => {
+        setCurrentIndex((prev) => (prev + 1) % length);
+    }, [length]);
+
+    const prevSlide = useCallback(() => {
+        setCurrentIndex((prev) => (prev - 1 + length) % length);
+    }, [length]);
+
+    const goToSlide = (index: number) => {
+        setCurrentIndex(index);
+    };
+
+    // Autoplay Effect
     useEffect(() => {
-        startAutoPlay();
-        return stopAutoPlay;
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [index, interval, length]);
-
-    function onKeyDown(e: React.KeyboardEvent) {
-        if (e.key === "ArrowLeft") prev();
-        if (e.key === "ArrowRight") next();
-    }
-
-    function startAutoPlay() {
-        stopAutoPlay();
-        // only autoplay if more than 1 image
-        if (length <= 1) return;
-        timerRef.current = window.setInterval(() => {
-            if (!isHoveredRef.current) {
-                setIndex((prev) => (prev + 1) % length);
-            }
-        }, interval);
-    }
-
-    function stopAutoPlay() {
-        if (timerRef.current) {
-            window.clearInterval(timerRef.current);
-            timerRef.current = null;
+        if (isPlaying && !isHovered) {
+            timerRef.current = setInterval(() => {
+                nextSlide();
+            }, interval);
         }
-    }
 
-    function goTo(i: number) {
-        setIndex(((i % length) + length) % length);
-    }
+        return () => {
+            if (timerRef.current) clearInterval(timerRef.current);
+        };
+    }, [isPlaying, isHovered, interval, nextSlide]);
 
-    function prev() {
-        goTo(index - 1);
-    }
+    // Touch Handlers
+    const handleTouchStart = (e: React.TouchEvent) => {
+        touchStartX.current = e.targetTouches[0].clientX;
+    };
 
-    function next() {
-        goTo(index + 1);
-    }
+    const handleTouchMove = (e: React.TouchEvent) => {
+        touchEndX.current = e.targetTouches[0].clientX;
+    };
 
-    // Touch handlers for swipe
-    function onTouchStart(e: React.TouchEvent) {
-        touchStartX.current = e.touches[0].clientX;
-    }
+    const handleTouchEnd = () => {
+        if (!touchStartX.current || !touchEndX.current) return;
 
-    function onTouchEnd(e: React.TouchEvent) {
-        if (touchStartX.current === null) return;
-        const touchEndX = e.changedTouches[0].clientX;
-        const diff = touchStartX.current - touchEndX;
-        const threshold = 40; // min px to count as swipe
-        if (Math.abs(diff) > threshold) {
-            if (diff > 0) {
-                // swiped left
-                next();
-            } else {
-                prev();
-            }
+        const distance = touchStartX.current - touchEndX.current;
+        const minSwipeDistance = 50;
+
+        if (distance > minSwipeDistance) {
+            nextSlide();
+        } else if (distance < -minSwipeDistance) {
+            prevSlide();
         }
+
+        // Reset
         touchStartX.current = null;
-    }
+        touchEndX.current = null;
+    };
 
     return (
         <div
-            className={`w-full relative overflow-hidden rounded-2xl bg-gray-100 ${className}`}
-            onMouseEnter={() => {
-                isHoveredRef.current = true;
-                stopAutoPlay();
-            }}
-            onMouseLeave={() => {
-                isHoveredRef.current = false;
-                startAutoPlay();
-            }}
-            onTouchStart={onTouchStart}
-            onTouchEnd={onTouchEnd}
-            onKeyDown={onKeyDown}
-            tabIndex={0}
-            role="region"
-            aria-roledescription="carousel"
-            aria-label="Image carousel"
+            className={cn(
+                "relative w-full h-[85vh] md:h-screen bg-black group overflow-hidden select-none",
+                className
+            )}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
         >
-            {/* Slides */}
-            <div className="flex transition-transform duration-700 ease-in-out" style={{ transform: `translateX(-${index * 100}%)` }}>
-                {images.map((src, i) => (
-                    <div key={i} className="min-w-full h-[64vh] mx-2">
-                        <div className="w-full h-full bg-gray-100 relative">
-                            {/* Use next/image for optimization; set fill and object-cover */}
+            {/* Main Image Layer */}
+            <div className="absolute inset-0 w-full h-full">
+                {images.map((img, index) => (
+                    <div
+                        key={`slide-${index}`}
+                        className={cn(
+                            "absolute inset-0 transition-opacity duration-1000 ease-in-out",
+                            index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
+                        )}
+                    >
+                        {/* 
+                            Image Container with Keyframe Animation Support 
+                            We simply transition scale for a "Ken Burns" effect when active.
+                         */}
+                        <div className={cn(
+                            "relative w-full h-full transition-transform duration-[10000ms] ease-linear",
+                            index === currentIndex ? "scale-110" : "scale-100"
+                        )}>
                             <Image
-                                src={src}
-                                alt={`Slide ${i + 1}`}
+                                src={img}
+                                alt={`Slide ${index + 1}`}
                                 fill
-                                sizes="(max-width: 640px) 100vw, (max-width: 1280px) 100vw, 100vw"
-                                className="object-cover flex-shrink-0 w-full h-full"
-                                priority={i === 0}
+                                className="object-cover"
+                                priority={index === 0}
+                                sizes="100vw"
+                                quality={90}
                             />
-                        </div>
-                        {/* Optional caption area - visible on md */}
-                        <div className="absolute left-4 bottom-4 bg-black bg-opacity-40 text-white px-3 py-1 rounded-md md:block hidden">
-                            <span className="text-sm">{`Image ${i + 1} of ${length}`}</span>
+                            {/* Subtle Overlay to make text/nav pop if needed, but keeping image clear */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30" />
                         </div>
                     </div>
                 ))}
             </div>
 
-            {/* Controls */}
-            <button
-                aria-label="Previous slide"
-                onClick={() => {
-                    prev();
-                }}
-                className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-40 hover:bg-opacity-60 text-white p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-white transition-all">
+            {/* Controls Info Layer */}
+            <div className="absolute inset-x-0 bottom-0 z-20 p-6 md:p-12 flex flex-col md:flex-row items-end justify-between gap-6">
 
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden>
-                    <path fillRule="evenodd" d="M12.293 16.293a1 1 0 010 1.414l-1.414 1.414a1 1 0 01-1.414 0L3 12.243l5.465-6.878a1 1 0 011.414 0l1.414 1.414a1 1 0 010 1.414L7.414 12l4.879 4.879z" clipRule="evenodd" />
-                </svg>
-            </button>
+                {/* Text/Caption Placeholder (Optional, can be removed if not needed) */}
+                <div className="max-w-xl space-y-2 opacity-0 animate-fade-in-up" key={currentIndex}>
+                    {/* You could add dynamic captions here in the future */}
+                </div>
 
-            <button
-                aria-label="Next slide"
-                onClick={() => {
-                    next();
-                }}
-                className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-40 hover:bg-opacity-60 text-white p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-white transition-all">
+                {/* Controls Container */}
+                <div className="flex items-center gap-6 w-full md:w-auto justify-between md:justify-end">
 
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden>
-                    <path fillRule="evenodd" d="M7.707 3.707a1 1 0 010-1.414L9.121.879a1 1 0 011.414 0l6.879 6.879-5.465 6.878a1 1 0 01-1.414 0L10.121 12.95a1 1 0 010-1.414l4.879-4.879L7.707 3.707z" clipRule="evenodd" />
-                </svg>
-            </button>
+                    {/* Indicators */}
+                    <div className="flex gap-3">
+                        {images.map((_, i) => (
+                            <button
+                                key={i}
+                                onClick={() => goToSlide(i)}
+                                className={cn(
+                                    "h-1 transition-all duration-500 rounded-full box-content border border-transparent bg-clip-padding",
+                                    i === currentIndex ? "w-12 bg-white" : "w-6 bg-white/40 hover:bg-white/70"
+                                )}
+                                aria-label={`Go to slide ${i + 1}`}
+                            />
+                        ))}
+                    </div>
 
-            {/* Dots */}
-            <div className="absolute left-1/2 -translate-x-1/2 bottom-4 z-20 flex gap-2" role="tablist">
-                {images.map((_, i) => (
-                    <button
-                        key={i}
-                        onClick={() => goTo(i)}
-                        className={`w-3 h-3 rounded-full transition-colors ${i === index ? "bg-white" : "bg-white/60"} hover:bg-white`}
-                        aria-label={`Go to slide ${i + 1}`}
-                        aria-selected={i === index}
-                        role="tab"
-                    />
-                ))}
+                    {/* Buttons */}
+                    <div className="flex items-center gap-3">
+                        <button
+                            onClick={prevSlide}
+                            className="p-4 rounded-full bg-white/10 backdrop-blur-md border border-white/10 hover:bg-white/20 text-white transition-all hover:scale-105 active:scale-95"
+                            aria-label="Previous Slide"
+                        >
+                            <ChevronLeft className="w-6 h-6" />
+                        </button>
+
+                        <button
+                            onClick={() => setIsPlaying(!isPlaying)}
+                            className="p-4 rounded-full bg-white/10 backdrop-blur-md border border-white/10 hover:bg-white/20 text-white transition-all hover:scale-105 active:scale-95 hidden md:flex"
+                            aria-label={isPlaying ? "Pause" : "Play"}
+                        >
+                            {isPlaying ? <Pause className="w-6 h-6 fill-current" /> : <Play className="w-6 h-6 fill-current" />}
+                        </button>
+
+                        <button
+                            onClick={nextSlide}
+                            className="p-4 rounded-full bg-white/10 backdrop-blur-md border border-white/10 hover:bg-white/20 text-white transition-all hover:scale-105 active:scale-95"
+                            aria-label="Next Slide"
+                        >
+                            <ChevronRight className="w-6 h-6" />
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     );
