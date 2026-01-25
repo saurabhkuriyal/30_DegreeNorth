@@ -126,7 +126,7 @@ const NewNavbar = () => {
                             </div>
 
                             {/* Other Links */}
-                            {["About", "Blogs", "Contact"].map((item) => (
+                            {["About", "Blog", "Contact"].map((item) => (
                                 <Link
                                     key={item}
                                     href={`/${item.toLowerCase()}`}

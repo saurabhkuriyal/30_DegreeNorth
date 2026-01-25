@@ -2,8 +2,9 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 import * as React from "react";
-
 // Define the props for the TravelCard component
+
+
 interface TravelCardProps extends React.HTMLAttributes<HTMLDivElement> {
   imageUrl: string;
   imageAlt: string;
@@ -33,6 +34,8 @@ const TravelCard = React.forwardRef<HTMLDivElement, TravelCardProps>(
     },
     ref
   ) => {
+
+
     return (
       <div
         ref={ref}
@@ -57,13 +60,13 @@ const TravelCard = React.forwardRef<HTMLDivElement, TravelCardProps>(
         <div className="relative flex h-full flex-col justify-between p-6 text-card-foreground">
           {/* Top Section: Logo */}
           <div className="flex h-40 items-start">
-             {logo && (
-                <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-white/50 bg-black/20 backdrop-blur-sm">
-                   {logo}
-                </div>
-             )}
+            {logo && (
+              <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-white/50 bg-black/20 backdrop-blur-sm">
+                {logo}
+              </div>
+            )}
           </div>
-          
+
           {/* Middle Section: Details (slides up on hover) */}
           <div className="space-y-4 transition-transform duration-500 ease-in-out group-hover:-translate-y-16">
             <div>
@@ -82,11 +85,11 @@ const TravelCard = React.forwardRef<HTMLDivElement, TravelCardProps>(
           <div className="absolute -bottom-20 left-0 w-full p-6 opacity-0 transition-all duration-500 ease-in-out group-hover:bottom-0 group-hover:opacity-100">
             <div className="flex items-end justify-between">
               <div>
-                <span className="text-4xl font-bold text-white">${price}</span>
+                <span className="text-4xl font-bold text-white">₹{price}</span>
                 <span className="text-white/80"> {pricePeriod}</span>
               </div>
               <Button onClick={onBookNow} size="lg" className="bg-white text-black hover:bg-white/90">
-                Book Now <ArrowRight className="ml-2 h-4 w-4" />
+                Details <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
           </div>

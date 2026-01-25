@@ -91,7 +91,7 @@ export default function Carousel({
     return (
         <div
             className={cn(
-                "relative w-full h-[85vh] md:h-screen bg-black group overflow-hidden select-none",
+                "rounded-2xl mt-4 relative w-full h-[85vh] md:h-screen bg-black group overflow-hidden select-none",
                 className
             )}
             onMouseEnter={() => setIsHovered(true)}
