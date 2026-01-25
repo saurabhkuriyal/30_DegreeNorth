@@ -57,10 +57,10 @@ export default function News() {
           </div>
           <img
             alt="Product screenshot"
-            src="https://tailwindcss.com/plus-assets/img/component-images/dark-project-app-screenshot.png"
+            src="https://images.unsplash.com/photo-1601618613229-ec7645fad6fa?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             width={2432}
             height={1442}
-            className="w-3xl order-first lg:order-none max-w-none rounded-xl shadow-xl ring-1 ring-white/10 sm:w-228 md:-ml-4 lg:-ml-0"
+            className="w-3xl object-cover order-first lg:order-none w-full h-full rounded-xl shadow-xl ring-1 ring-white/10 sm:w-full md:-ml-4 lg:-ml-0"
           />
         </div>
       </div>
