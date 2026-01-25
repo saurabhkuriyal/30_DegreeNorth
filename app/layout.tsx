@@ -1,5 +1,6 @@
 import Footer from '@/components/custom/Footer';
-import Navbar from '@/components/custom/Navbar';
+//import Navbar from '@/components/custom/Navbar';
+import NewNavbar from "@/components/custom/NewNavbar";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -30,9 +31,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className='mx-2'>
-        <Navbar />
-        {children}
-        <Footer/>
+          {/* <Navbar /> */}
+          <NewNavbar />
+          {children}
+          <Footer />
         </div>
       </body>
     </html>
