@@ -91,7 +91,8 @@ const NewNavbar = () => {
                                 <button
                                     className={cn(
                                         "flex items-center gap-1 px-4 py-2 rounded-full text-sm font-medium transition-colors",
-                                        "hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-200"
+                                        "hover:bg-zinc-100 dark:hover:bg-zinc-800",
+                                        isScrolled ? "text-zinc-700 dark:text-zinc-200" : "text-black dark:text-white"
                                     )}
                                 >
                                     Treks
@@ -129,7 +130,10 @@ const NewNavbar = () => {
                                 <Link
                                     key={item}
                                     href={`/${item.toLowerCase()}`}
-                                    className="px-4 py-2 rounded-full text-sm font-medium text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                                    className={cn(
+                                        "px-4 py-2 rounded-full text-sm font-medium transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800",
+                                        isScrolled ? "text-zinc-700 dark:text-zinc-200" : "text-black dark:text-white"
+                                    )}
                                 >
                                     {item}
                                 </Link>
@@ -144,7 +148,8 @@ const NewNavbar = () => {
                                     href="/login"
                                     className={cn(
                                         "px-4 py-2 text-sm font-medium rounded-full transition-all duration-300",
-                                        "text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                                        "hover:bg-zinc-100 dark:hover:bg-zinc-800",
+                                        isScrolled ? "text-zinc-700 dark:text-zinc-200" : "text-black dark:text-white"
                                     )}
                                 >
                                     Log in
