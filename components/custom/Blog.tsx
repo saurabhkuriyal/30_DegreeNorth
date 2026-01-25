@@ -1,59 +1,59 @@
 const posts = [
   {
     id: 1,
-    title: 'Boost your conversion rate',
-    href: '#',
+    title: 'The "Off-Leash" freedom my Husky desperately needed',
+    href: '#', // Link to the specific trek page
     description:
-      'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
-    date: 'Mar 16, 2020',
-    datetime: '2020-03-16',
-    category: { title: 'Marketing', href: '#' },
+      'Living in a Gurgaon apartment, Shadow never really gets to run. Watching him sprint across the Dayara meadows without a leash was the happiest moment of my life. The team knew exactly how to handle his energy.',
+    date: 'Jan 16, 2026',
+    datetime: '2026-01-16',
+    category: { title: 'Dayara Bugyal', href: '#' },
     author: {
-      name: 'Michael Foster',
-      role: 'Co-Founder / CTO',
+      name: 'Rohan Malhotra',
+      role: 'Parent to "Shadow" (Husky)', // Crucial change: "Role" is now "Dog Parent"
       href: '#',
       imageUrl:
-        'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
     },
   },
   {
     id: 2,
-    title: 'How to use search engine optimization to drive sales',
+    title: 'My Shih Tzu’s first time in snow—and he loved it!',
     href: '#',
-    description: 'Optio cum necessitatibus dolor voluptatum provident commodi et. Qui aperiam fugiat nemo cumque.',
-    date: 'Mar 10, 2020',
-    datetime: '2020-03-10',
-    category: { title: 'Sales', href: '#' },
+    description: 'I was terrified about the cold and the walking distance. But the team carried extra blankets, and the soft pine trails of Deoban were perfect for his little paws. We didn’t need boots at all!',
+    date: 'Dec 10, 2025',
+    datetime: '2025-12-10',
+    category: { title: 'Chakrata / Deoban', href: '#' },
     author: {
-      name: 'Lindsay Walton',
-      role: 'Front-end Developer',
+      name: 'Aisha Verma',
+      role: 'Mom to "Coco" (Shih Tzu)',
       href: '#',
       imageUrl:
-        'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
     },
   },
   {
     id: 3,
-    title: 'Improve your customer experience',
+    title: 'I was worried about leopards, but their safety protocol is real',
     href: '#',
     description:
-      'Cupiditate maiores ullam eveniet adipisci in doloribus nulla minus. Voluptas iusto libero adipisci rem et corporis. Nostrud sint anim sunt aliqua. Nulla eu labore irure incididunt velit cillum quis magna dolore.',
-    date: 'Feb 12, 2020',
-    datetime: '2020-02-12',
-    category: { title: 'Business', href: '#' },
+      'I almost cancelled the trip because of the wildlife news. But seeing the staff set up the solar perimeter lights and the night-watch guard gave me total peace of mind. Safest camping experience ever.',
+    date: 'Feb 12, 2026',
+    datetime: '2026-02-12',
+    category: { title: 'Nag Tibba', href: '#' },
     author: {
-      name: 'Tom Cook',
-      role: 'Director of Product',
+      name: 'Vikram Singh',
+      role: 'Dad to "Bruno" (Labrador)',
       href: '#',
       imageUrl:
-        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
     },
   },
 ]
 
 export default function Example() {
   return (
-    <div className="bg-white py-24 sm:py-32 rounded-3xl">
+    <div className="bg-white py-10 sm:py-15 rounded-3xl">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">
           <h2 className="text-4xl font-semibold tracking-tight text-pretty text-black sm:text-5xl">Our Testimonials</h2>

@@ -20,7 +20,7 @@ export default function CardDemo() {
           <Toaster richColors />
           <div className="flex w-full items-center justify-center bg-background p-4">
             <TravelCard
-              imageUrl="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070&auto=format&fit=crop"
+              imageUrl="https://images.unsplash.com/photo-1709033726577-2b08495a6925?q=80&w=435&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3DD"
               imageAlt="Misty mountains over a serene lake"
               logo={<Mountain className="h-6 w-6 text-white/80" />}
               title="Manhattan Green Camp"
@@ -37,7 +37,7 @@ export default function CardDemo() {
           <Toaster richColors />
           <div className="flex w-full items-center justify-center bg-background p-4">
             <TravelCard
-              imageUrl="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070&auto=format&fit=crop"
+              imageUrl="https://images.unsplash.com/photo-1727870877068-9cf336c94ec1?q=80&w=435&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               imageAlt="Misty mountains over a serene lake"
               logo={<Mountain className="h-6 w-6 text-white/80" />}
               title="Manhattan Green Camp"
@@ -54,7 +54,7 @@ export default function CardDemo() {
           <Toaster richColors />
           <div className="flex w-full items-center justify-center bg-background p-4">
             <TravelCard
-              imageUrl="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070&auto=format&fit=crop"
+              imageUrl="https://images.unsplash.com/photo-1630811031533-e698d4218e66?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               imageAlt="Misty mountains over a serene lake"
               logo={<Mountain className="h-6 w-6 text-white/80" />}
               title="Manhattan Green Camp"
