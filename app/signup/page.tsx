@@ -27,6 +27,7 @@ export default function SignupPage() {
                     <div className="bg-white/20 backdrop-blur-md p-3 rounded-xl w-fit mb-6">
                         <Mountain className="w-8 h-8 text-white" />
                     </div>
+                    
                     <h2 className="text-4xl font-bold mb-4 leading-tight">Begin your journey.</h2>
                     <p className="text-lg text-white/80 leading-relaxed">
                         "The best view comes after the hardest climb."
