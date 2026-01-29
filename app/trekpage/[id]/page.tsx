@@ -124,6 +124,7 @@ export default function TrekDetailsPage() {
                         </div>
 
                         {/* Quick Stats Grid */}
+                        
                         <div className="grid grid-cols-3 gap-6 bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 w-full md:w-auto">
                             <div>
                                 <p className="text-white/60 text-xs uppercase tracking-wider">Altitude</p>
